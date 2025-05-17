@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Añadir Evento - Countdown App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Añadir Nuevo Evento</h1>
+        
+        <div class="row justify-content-center">
+            
+            <div class="col-md-6">
+                
+                <div class="card">
+                    
+                    <div class="card-body">
+                    
+                        <h2 class="text-center">Formulario de Evento</h3>
+                        
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nombre del Evento</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Fecha</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <a href="{{ url_for('index') }}" class="btn btn-secondary">Volver al menu principal</a>
+                            </div>
+                        </form>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
