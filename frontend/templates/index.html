@@ -39,6 +39,12 @@
                                 Pasó hace {{ days_remaining|abs }} día(s)
                             {% endif %}
                         </h4>
+
+                        <!-- Botón para eliminar el evento encontrado -->
+                        <div class="mt-3">
+                            <a href="{{ url_for('delete', event_id=event.id) }}" class="btn btn-danger">Eliminar evento</a>
+                        </div>
+
                     </div>
                 </div>
                 
@@ -53,6 +59,29 @@
                 <div class="text-center mt-4">
                     <a href="{{ url_for('add_event') }}" class="btn btn-success">Añadir Nuevo Evento</a>
                 </div>
+
+                    <!-- Lista de todos los eventos -->
+                {% if events %}
+                
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3 class="text-center">Todos los eventos</h3>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for event in events %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ event.name }}</strong>
+                                <span class="text-muted">{{ event.date.strftime('%d/%m/%Y') }}</span>
+                            </div>
+                            <a href="{{ url_for('delete', event_id=event.id) }}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                {% endif %}
+
             </div>
         </div>
     </div>

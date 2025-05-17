@@ -4,10 +4,10 @@ from app import app
 from db import db
 from model import Event
 
+
 # Ruta a la página principal
-@app.route('/')
+@app.route('/') # Nombre de la ruta
 def index():
-    # Opcional: mostrar eventos próximos en la página principal
     events = Event.query.order_by(Event.date).all()
     return render_template('index.html', events=events)
 
@@ -34,7 +34,7 @@ def search():
     if not query:
         return redirect(url_for('index'))
     
-    event = Event.query.filter(Event.name.like(f'%{query}%')).first()
+    event = Event.query.filter(Event.name.like(f'%{query}%')).all()
     
     if event:
         days_remaining = event.days_remaining()
@@ -48,9 +48,17 @@ def search():
                           no_results=True, 
                           query=query)
 
+
+# Ruta para la página de confirmación de eliminación
+@app.route('/delete/<int:event_id>')
+def delete(event_id):
+    event = Event.query.get_or_404(event_id)
+    return render_template('delete.html', event=event)
+
 # Ruta para eliminar un evento
 @app.route('/delete/<int:event_id>', methods=['POST'])
-def delete_event(event_id):
+def delete_event(
+event_id):
     event = Event.query.get_or_404(event_id)
     db.session.delete(event)
     db.session.commit()
