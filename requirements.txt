@@ -6,7 +6,6 @@ Beaker==1.12.1
 beautifulsoup4==4.13.4
 blinker==1.9.0
 blivet==3.12.1
-blivet-gui==2.6.0
 Brlapi==0.8.6
 cffi==1.17.1
 charset-normalizer==3.4.1
