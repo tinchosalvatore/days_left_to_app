@@ -6,8 +6,7 @@ __pycache__/
 # Virtual environment
 venv/
 
-# Environment variables
-.env
+
 
 # SQLite databases
 *.db
@@ -28,3 +27,17 @@ venv/
 *.egg-info/
 dist/
 build/
+
+# Archivos temporales de Render o deploys fallidos
+*.sqlite3
+*.db-journal
+
+# Entornos virtuales (en caso de otros nombres)
+.env/
+env/
+ENV/
+
+# Archivos de configuración personales
+*.env.local
+*.env.*.local
+.env
