@@ -34,7 +34,7 @@ def search():
     if not query:
         return redirect(url_for('index'))
     
-    event = Event.query.filter(Event.name.like(f'%{query}%')).all()
+    event = Event.query.filter(Event.name.like(f'%{query}%')).first()
     
     if event:
         days_remaining = event.days_remaining()
