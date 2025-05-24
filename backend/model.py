@@ -10,3 +10,6 @@ class Event(db.Model):
     # Funcion que devuelve en dias, la fecha de hoy
     def days_remaining(self):
         return (self.date - date.today()).days
+    
+    def name(self):
+        return self.name
