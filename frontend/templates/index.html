@@ -31,13 +31,7 @@
                         <h3>{{ event.name }}</h3>
                         <p>Fecha: {{ event.date.strftime('%d/%m/%Y') }}</p>
                         <h4>
-                            {% if days_remaining > 0 %}
-                                Faltan {{ days_remaining }} día(s)
-                            {% elif days_remaining == 0 %}
-                                ¡Es HOY!
-                            {% else %}
-                                Pasó hace {{ days_remaining|abs }} día(s)
-                            {% endif %}
+                            {{ days_remaining }}
                         </h4>
 
                         <!-- Botón para eliminar el evento encontrado -->
@@ -55,6 +49,7 @@
                 </div>
                 {% endif %}
                 
+
                 <!-- Botón para añadir nuevo evento -->
                 <div class="text-center mt-4">
                     <a href="{{ url_for('add_event') }}" class="btn btn-success">Añadir Nuevo Evento</a>
