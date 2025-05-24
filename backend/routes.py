@@ -4,6 +4,14 @@ from app import app
 from db import db
 from model import Event
 
+# Esta funcion es para el print del resultados de los dias
+def days_left(days_remaining):
+    if days_remaining == 0:
+        return "¡Hoy es el día del evento!"
+    elif days_remaining < 0:
+        return "El evento ya ha pasado."
+    else:
+        return f"Faltan {days_remaining} días para el evento."
 
 # Ruta a la página principal
 @app.route('/') # Nombre de la ruta
@@ -36,12 +44,22 @@ def search():
     
     event = Event.query.filter(Event.name.like(f'%{query}%')).first()
     
+      
     if event:
+        #Formateo para la muestra de datos
+        event_name = event.get_formatted_name() 
+        event_date = event.get_formatted_date()
+
+        #importamos los dias restantes
         days_remaining = event.days_remaining()
-        
+        # Llamamos a la funcion que devuelve el mensaje dependiendo del valor de days_remaining
+        message = days_left(int(days_remaining))
+
         return render_template('index.html', 
-                              event=event, 
-                              days_remaining=days_remaining,
+                              event=event,
+                              event_name=event_name,
+                              event_date=event_date,
+                              days_remaining=message,
                               query=query)
     
     return render_template('index.html', 
