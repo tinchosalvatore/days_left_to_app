@@ -11,5 +11,8 @@ class Event(db.Model):
     def days_remaining(self):
         return (self.date - date.today()).days
     
-    def name(self):
-        return self.name
+    def get_formatted_name(self):
+        return str(self.name)
+    
+    def get_formatted_date(self):
+        return self.date.strftime('%Y-%m-%d')

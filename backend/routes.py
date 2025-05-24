@@ -42,14 +42,23 @@ def search():
     if not query:
         return redirect(url_for('index'))
     
-    event = Event.query.filter(Event.name.like(f'%{query}%')).first()  
+    event = Event.query.filter(Event.name.like(f'%{query}%')).first()
+    
       
     if event:
+        #Formateo para la muestra de datos
+        event_name = event.get_formatted_name() 
+        event_date = event.get_formatted_date()
+
+        #importamos los dias restantes
         days_remaining = event.days_remaining()
+        # Llamamos a la funcion que devuelve el mensaje dependiendo del valor de days_remaining
         message = days_left(int(days_remaining))
-        
+
         return render_template('index.html', 
                               event=event,
+                              event_name=event_name,
+                              event_date=event_date,
                               days_remaining=message,
                               query=query)
     
